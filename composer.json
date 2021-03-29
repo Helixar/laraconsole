@@ -14,7 +14,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Helixar\\Laracosole\\CommandsServiceProvider"
+                "Helixar\\Laraconsole\\CommandsServiceProvider"
             ]
         }
     }
