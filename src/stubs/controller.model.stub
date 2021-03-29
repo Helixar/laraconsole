@@ -1,0 +1,89 @@
+<?php
+
+namespace {{ namespace }};
+
+use {{ namespacedModel }};
+use App\Http\Requests\{{ formrequestNamespace }};
+use Exception;
+use {{ rootNamespace }}Http\Controllers\Controller;
+use Illuminate\Contracts\View\View as ViewContract;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+
+class {{ class }} extends Controller
+{
+    /**
+     * @return Application|Factory|ViewContract|View
+     */
+    public function index(): View
+    {
+        ${{ modelPlural }} = {{ model }}::all();
+        return view('{{ viewDir }}.index', ['{{ modelPlural }}' => ${{ modelPlural }}]);
+    }
+
+    /**
+     * @return Application|Factory|ViewContract|View
+     */
+    public function create()
+    {
+        return view('{{ viewDir }}.create');
+    }
+
+    /**
+     * @param {{ formrequest }} $request
+     * @return RedirectResponse
+     */
+    public function store({{ formrequest }} $request): RedirectResponse
+    {
+        ${{ modelSingular }} = {{ model }}::create($request->validated());
+        return redirect()
+            ->route('{{ view }}.show', ${{ modelSingular }}->id)
+            ->with('success', "{{ model }} created");
+    }
+
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return Application|Factory|ViewContract|View
+     */
+    public function show({{ model }} ${{ modelVariable }}): View
+    {
+        return view('{{ viewDir }}.show', ['{{ modelVariable }}' => ${{ modelVariable }}]);
+    }
+
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return Application|Factory|ViewContract|View
+     */
+    public function edit({{ model }} ${{ modelVariable }}): View
+    {
+        return view('{{ viewDir }}.edit', ['{{ modelVariable }}' => ${{ modelVariable }}]);
+    }
+
+    /**
+     * @param {{ formrequest }} $request
+     * @param {{ model }} ${{ modelVariable }}
+     * @return RedirectResponse
+     */
+    public function update({{ model }}Request $request, {{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        ${{ modelVariable }}->update($request->validated());
+        return redirect()
+            ->route('{{ view }}.show', ${{ modelVariable }}->id)
+            ->with('success', "{{ model }} updated");
+    }
+
+    /**
+     * @param {{ model }} ${{ modelVariable }}
+     * @return RedirectResponse
+     * @throws Exception
+     */
+    public function destroy({{ model }} ${{ modelVariable }}): RedirectResponse
+    {
+        ${{ modelVariable }}->delete();
+        return redirect()
+            ->route('{{ view }}.index')
+            ->with('success', "{{ model }} deleted");
+    }
+}

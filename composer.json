@@ -1,0 +1,14 @@
+{
+    "name": "helixar/laracommands",
+    "description": "A useful Laravel command list",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Helixar",
+            "email": "contact@cloudnode.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
