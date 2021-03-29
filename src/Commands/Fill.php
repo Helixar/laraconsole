@@ -4,6 +4,7 @@ namespace Helixar\Laraconsole\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Contracts\Container\BindingResolutionException;
+use Illuminate\Support\Facades\Hash;
 
 class Fill extends Command
 {
@@ -35,7 +36,7 @@ class Fill extends Command
             $fillable = [];
             foreach ($model->getFillable() as $attribute) {
                 if ($attribute === 'password') {
-                    $fillable[$attribute] = $this->secret("fill in the $attribute field");
+                    $fillable[$attribute] = Hash::make($this->secret("fill in the $attribute field"));
                 }else {
                     $fillable[$attribute] = $this->ask("fill in the $attribute field");
                 }
