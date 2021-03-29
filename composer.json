@@ -17,5 +17,10 @@
                 "Helixar\\Laraconsole\\CommandsServiceProvider"
             ]
         }
+    },
+    "autoload": {
+        "psr-4": {
+            "Helixar\\Laraconsole\\": "src/"
+        }
     }
 }
