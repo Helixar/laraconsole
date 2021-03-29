@@ -1,5 +1,5 @@
 {
-    "name": "helixar/laracommands",
+    "name": "helixar/laraconsole",
     "description": "A useful Laravel command list",
     "type": "library",
     "license": "MIT",
